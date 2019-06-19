@@ -1,0 +1,14 @@
+fifa19 <- read.csv("data/main_players.csv", stringsAsFactors = F)
+colnames(fifa19)
+positions_names <- c("LS", "ST", "RS", "LW", "LF", "CF", "RF", "RW", "LAM", "CAM", "RAM", "LM", "LCM", "CM", "RCM", "RM", "LWB", "LDM", "CDM", "RDM", "RWB", "LB", "LCB", "CB", "RCB", "RB")
+skills_names <- c("Crossing", "Finishing", "HeadingAccuracy", "ShortPassing", "Volleys", "Dribbling", "Curve", "FKAccuracy", "LongPassing", "BallControl", "Acceleration", "SprintSpeed", "Agility", "Reactions", "Balance", "ShotPower", "Jumping", "Stamina", "Strength", "LongShots", "Aggression", "Interceptions", "Positioning", "Vision", "Penalties", "Composure", "Marking", "StandingTackle", "SlidingTackle", "GKDiving", "GKHandling", "GKKicking", "GKPositioning", "GKReflexes")
+grouped_positions_names <- c("ST", "ST", "ST", "LW/RW", "CF", "CF", "CF", "LW/RW", "AM", "AM", "AM", "LM/RM", "CM", "CM", "CM", "LM/RM", "LB/RB", "DM", "DM", "DM", "LB/RB", "LB/RB", "CB", "CB", "CB", "LB/RB")
+fifa19$Preferred.Position <- fifa19[positions_names]
+  apply(1, function(row){
+    if(is.na(row["LAM"])){
+      "GK"
+    }else{
+      grouped_positions_names[which.max(row)]
+    }
+  })  unlist()
+fifa19$Preferred.Position  table()
